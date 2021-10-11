@@ -22,6 +22,7 @@
 This is a SAPUI5 Challenge, and was developed by Ianso & Snow (also known as Abdullah)
 at this time it is not complete, but we will continue working on it.
 
+
 ### Starting the generated app
 
 -   This app has been generated using the SAP Fiori tools - App Generator, as part of the SAP Fiori tools suite.  In order to launch the generated app, simply run the following from the generated app root folder:
