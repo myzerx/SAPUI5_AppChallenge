@@ -20,7 +20,7 @@
 ## SAPUI5 App Challenge
 
 This is a SAPUI5 Challenge, and was developed by Ianso & Snow (also known as Abdullah)
-at this time it is not complete, but we will continue working on it.
+at this time it is not complete, but we will working on it.
 
 
 ### Starting the generated app
