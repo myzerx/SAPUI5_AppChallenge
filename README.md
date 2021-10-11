@@ -17,9 +17,10 @@
 |**Add Eslint configuration**<br>False|
 |**Enable Telemetry**<br>True|
 
-## fiori2
+## SAPUI5 App Challenge
 
-A Fiori application.
+This is a SAPUI5 Challenge, and was developed by Ianso & Snow (also known as Abdullah)
+at this time it is not complete, but we will continue working on it.
 
 ### Starting the generated app
 
