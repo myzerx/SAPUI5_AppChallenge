@@ -1,0 +1,143 @@
+<mvc:View 
+	controllerName="sap.ui.demo.fiori2.controller.Detail"
+	xmlns="sap.m"
+	xmlns:semantic="sap.f.semantic"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout">
+	<semantic:SemanticPage id="page" busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}">
+		<semantic:titleHeading>
+			<Title 
+				text="{
+					parts: [
+						'i18n>commonItemTitle',
+						'selectedItem>/OrderID'
+					]
+				}"/>
+		</semantic:titleHeading>
+		<semantic:headerContent>
+			<l:HorizontalLayout>
+				<l:VerticalLayout class="sapUiMediumMarginEnd">
+					<ObjectAttribute
+						 title="{i18n>commonCustomerName}" 
+						 text="{selectedItem>/Customer/CompanyName}" />
+					<ObjectAttribute 
+						title="{i18n>detailOrderDate}" 
+						text="{
+							path: 'selectedItem>/OrderDate',
+							type: 'sap.ui.model.type.Date',
+							formatOptions: { type: 'short' }
+						}"/>
+					<ObjectAttribute 
+						title="{i18n>commonItemShipped}" 
+						text="{
+							path: 'selectedItem>/ShippedDate',
+							type: 'sap.ui.model.type.Date',
+							formatOptions: {type: 'short'}
+						}"/>
+				</l:VerticalLayout>
+				<l:VerticalLayout>
+					<Label text="{i18n>priceText}"/>
+					<ObjectNumber 
+						number="{
+							parts: [
+								{path:'selectedItem>/totalOrderAmount'},
+								{path:'selectedItem>/currency'}
+							]
+						}"/>	
+				</l:VerticalLayout>
+			</l:HorizontalLayout>
+		</semantic:headerContent>
+		<semantic:content>
+			<l:VerticalLayout>
+				<IconTabBar 
+					id="iconTabBar" 
+					headerBackgroundDesign="Transparent" 
+					selectedKey="{detailView>/selectedTab}"
+					select=".onTabSelect">
+					<items>
+						<IconTabFilter 
+							id="iconTabFilterShipping" 
+							icon="sap-icon://shipping-status" 
+							tooltip="{i18n>detailIconTabBarShipping}" 
+							key="shipping" />
+						<IconTabFilter 
+							id="iconTabFilterProcessor" 
+							icon="sap-icon://employee" 
+							tooltip="{i18n>detailIconTabBarProcessor}" 
+							key="processor" />
+					</items>
+				</IconTabBar>
+				<Table 
+					id="lineItemsList" 
+					class="sapUiSmallMarginTop" 
+					items="{Orders_Details}"
+					noDataText="{i18n>detailLineItemTableNoDataText}"
+					width="auto">
+					<headerToolbar>
+						<Toolbar id="lineItemsToolbar">
+							<Title 
+								id="ListID" 
+								text="List"/>
+						</Toolbar>
+					</headerToolbar>
+					<columns>
+						<Column>
+							<Text text="{i18n>detailLineItemTableIDColumn}"/>
+						</Column>
+						<Column 
+							minScreenWidth="Tablet" 
+							demandPopin="true" 
+							hAlign="End">
+							<Text text="{i18n>detailLineItemTableUnitPriceColumn}"/>
+						</Column>
+						<Column 
+							minScreenWidth="Tablet" 
+							demandPopin="true" 
+							hAlign="End">
+							<Text text="{i18n>detailLineItemTableUnitQuantityColumn}"/>
+						</Column>
+						<Column 
+							minScreenWidth="Tablet" 
+							demandPopin="true" 
+							hAlign="End">
+							<Text text="{i18n>detailLineItemTableTotalColumn}"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<ObjectIdentifier 
+									title="{Product/ProductName}" 
+									text="{ProductID}"/>
+								<ObjectNumber 
+									number="Unit Price" 
+									unit="Currency"/>
+								<ObjectAttribute 
+									text="Quantity"/>
+								<ObjectNumber 
+									number="Total" 
+									unit="Currency"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</l:VerticalLayout>
+		</semantic:content>
+		<semantic:closeAction>
+			<semantic:CloseAction
+				id="closeColumn"
+				press=".onCloseDetailPress"/>
+		</semantic:closeAction>
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction
+				id="shareEmail"
+				press=".onSendEmailPress"/>
+		</semantic:sendEmailAction>
+		<semantic:fullScreenAction>
+			<semantic:FullScreenAction
+				id="enterFullScreen"
+				visible="{= !${device>/system/phone} &amp;&amp; !${appView>/actionButtonsInfo/midColumn/fullScreen}}"
+				press=".toggleFullScreen"/>
+		</semantic:fullScreenAction>
+	</semantic:SemanticPage>
+</mvc:View>

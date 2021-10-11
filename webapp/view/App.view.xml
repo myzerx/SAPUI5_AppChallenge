@@ -1,0 +1,16 @@
+<mvc:View
+	displayBlock="true"
+	xmlns="sap.f"
+	xmlns:m="sap.m"
+	xmlns:mvc="sap.ui.core.mvc">
+	<m:App>
+		<FlexibleColumnLayout id="flexibleColumnLayout" backgroundDesign="Solid">
+			<beginColumnPages>
+				<mvc:XMLView id="beginView" viewName="sap.ui.demo.fiori2.view.Master"/>
+			</beginColumnPages>
+			<midColumnPages>
+				  <mvc:XMLView id="detailView" viewName="sap.ui.demo.fiori2.view.Detail"/> 
+			</midColumnPages>
+		</FlexibleColumnLayout>
+	</m:App>
+</mvc:View>
